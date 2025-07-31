@@ -2,22 +2,22 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[]args){
-        Scanner malongScanner = new Scanner(System.in);
+        Scanner ygotScanner = new Scanner(System.in);
 
         System.out.print("Enter ID number: ");
-        String ID = malongScanner.nextLine();
+        String ID = ygotScanner.nextLine();
 
         System.out.print("Enter First name: ");
-        String fname = malongScanner.nextLine();
+        String fname = ygotScanner.nextLine();
 
         System.out.print("Enter Last name: ");
-        String lname = malongScanner.nextLine();
+        String lname = ygotScanner.nextLine();
 
         System.out.print("Enter course: ");
-        String course = malongScanner.nextLine();
+        String course = ygotScanner.nextLine();
 
         System.out.print("Enter section: ");
-        String section = malongScanner.nextLine();
+        String section = ygotScanner.nextLine();
 
         System.out.println("Hello, good day to you, " + fname + " " + lname +
                 ", from " + course + " " + section + ".");
@@ -25,16 +25,16 @@ public class Main {
 
 
         System.out.print("Please enter your Midterm Exam Score: ");
-        int mES = malongScanner.nextInt();
+        int mES = ygotScanner.nextInt();
 
         System.out.print("Please enter your Final Exam Score: ");
-        int fES = malongScanner.nextInt();
+        int fES = ygotScanner.nextInt();
 
         System.out.print("Please enter your Project Score: ");
-        int pS = malongScanner.nextInt();
+        int pS = ygotScanner.nextInt();
 
         System.out.print("Please enter your Attendance Score: ");
-        int aS = malongScanner.nextInt();
+        int aS = ygotScanner.nextInt();
 
         int overAllScore = mES + fES + pS + aS;
         System.out.println("Your overall score is: " + overAllScore);
