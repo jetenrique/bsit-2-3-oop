@@ -42,7 +42,7 @@ public class Book {
 
 
     public static void main(String[] args) {
-        Book book1 = new Book("Eater", "Matthew Mattakis", 315);
+        Book book1 = new Book("Chess", "Jose Enrique", 315);
         Book book2 = new Book("Kicks", "Kyrie Nicole", 646);
         Book book3 = new Book("Seller", "Gela Mae", 169);
 
