@@ -1,66 +1,28 @@
-import java.util.Scanner;
-
 public class Main {
-    public static void main(String[]args){
-        Scanner ygotScanner = new Scanner(System.in);
+    public static void main(String[] args) {
 
-        System.out.print("Enter ID number: ");
-        String ID = ygotScanner.nextLine();
+        Student s1 = new Student("Alice", 20, "BSIT", 90, 85, 88);
+        Student s2 = new Student("Bob", 19, "BSIT", 70, 72, 68);
+        Student s3 = new Student("Charlie", 21, "BSIT", 55, 60, 58);
 
-        System.out.print("Enter First name: ");
-        String fname = ygotScanner.nextLine();
+        Student[] students = {s1, s2, s3};
+        int passingCount = 0;
 
-        System.out.print("Enter Last name: ");
-        String lname = ygotScanner.nextLine();
-
-        System.out.print("Enter course: ");
-        String course = ygotScanner.nextLine();
-
-        System.out.print("Enter section: ");
-        String section = ygotScanner.nextLine();
-
-        System.out.println("Hello, good day to you, " + fname + " " + lname +
-                ", from " + course + " " + section + ".");
-        System.out.println(" ");
-
-
-        System.out.print("Please enter your Midterm Exam Score: ");
-        int mES = ygotScanner.nextInt();
-
-        System.out.print("Please enter your Final Exam Score: ");
-        int fES = ygotScanner.nextInt();
-
-        System.out.print("Please enter your Project Score: ");
-        int pS = ygotScanner.nextInt();
-
-        System.out.print("Please enter your Attendance Score: ");
-        int aS = ygotScanner.nextInt();
-
-        int overAllScore = mES + fES + pS + aS;
-        System.out.println("Your overall score is: " + overAllScore);
-
-
-
-        int averageScore = mES + fES + pS + aS % 400;
-        int result;
-        if (averageScore >= 75) {
-            result = 2;
-        }
-        else{
-            result = 1;
+        for (Student s : students) {
+            System.out.println("");
+            s.displayInfo();
+            double avg = s.calculateAverage();
+            System.out.printf("Average Grade : %.2f\n", avg);
+            System.out.println("Letter Grade  : " + s.getLetterGrade());
+            System.out.println("Status        : " + (s.isPassing() ? "PASSING" : "FAILING"));
+            if (s.isPassing()) {
+                passingCount++;
+            }
+            System.out.println("");
         }
 
-        switch(result){
-            case 2:
-                System.out.println("Passed");
-                break;
-            case 1:
-                System.out.println("Failed");
-                break;
-        }
 
-        System.out.println("end");
-
-
+        System.out.println("Summary:");
+        System.out.println("Total students passing: " + passingCount + " out of " + students.length);
     }
 }
