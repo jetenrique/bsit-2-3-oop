@@ -65,52 +65,76 @@ public class Main {
     }
 }
 
+student.java
 
-public class Students {
+public class Student {
     String name;
-    String course;
     int age;
-    double Grade1;
-    double Grade2;
-    double Grade3;
-    double Grade;
+    String course;
+    double grade1, grade2, grade3;
 
-
-
-    public Students(String name, String course, int age ) {
-
+    public Student(String name, int age, String course, double grade1, double grade2, double grade3) {
         this.name = name;
-        this.course = course;
         this.age = age;
+        this.course = course;
+        this.grade1 = grade1;
+        this.grade2 = grade2;
+        this.grade3 = grade3;
 
-        System.out.println("New Student '" + name +"'course" + age +"has been added to your Students list");
+        System.out.println("New Student '" + name + "' (" + course + ", Age " + age + ") has been added.\n");
     }
 
-    public void displayInfo () {
-        System.out.println("Name: " + name);
-        System.out.println("course: " +  course);
-        System.out.println("age:" + age);
-
+    public void displayInfo() {
+        System.out.println("Name   : " + name);
+        System.out.println("Age    : " + age);
+        System.out.println("Course : " + course);
     }
 
-
-    public void calculateGrades () {
-
-        if ( Grade1 >= 90) {
-            System.out.println(" the output will be A");
-        }
-
-        if (Grade2 >= 80-89) {
-            System.out.println("the output will be B");
-        }
-
-        if(Grade3 <= 70-79) {
-            System.out.println("the output will be C");
-        }
-
-        if ( Grade <= 60-69) {
-            System.out.println("the output will be D");
-        }else {
-            System.out.println(" the letter grade: F Failed");
-        }
+    public double calculateAverage() {
+        return (grade1 + grade2 + grade3) / 3;
     }
+
+    public String getLetterGrade() {
+        double avg = calculateAverage();
+        if (avg >= 90) return "A";
+        else if (avg >= 80) return "B";
+        else if (avg >= 70) return "C";
+        else if (avg >= 60) return "D";
+        else return "F";
+    }
+
+    public boolean isPassing() {
+        return calculateAverage() >= 70;
+    }
+}
+
+ main.java 
+     
+public class Main {
+    public static void main(String[] args) {
+        // Create 3 Student objects
+        Student s1 = new Student("Alice", 20, "BSIT", 90, 85, 88);
+        Student s2 = new Student("Bob", 19, "BSCS", 70, 72, 68);
+        Student s3 = new Student("Charlie", 21, "BSIS", 55, 60, 58);
+
+        Student[] students = {s1, s2, s3};
+        int passingCount = 0;
+
+        for (Student s : students) {
+            System.out.println("====================================");
+            s.displayInfo();
+            double avg = s.calculateAverage();
+            System.out.printf("Average Grade : %.2f\n", avg);
+            System.out.println("Letter Grade  : " + s.getLetterGrade());
+            System.out.println("Status        : " + (s.isPassing() ? "PASSING" : "FAILING"));
+            if (s.isPassing()) {
+                passingCount++;
+            }
+            System.out.println("====================================\n");
+        }
+
+        // Display summary
+        System.out.println("Summary:");
+        System.out.println("Total students passing: " + passingCount + " out of " + students.length);
+    }
+}
