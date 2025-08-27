@@ -1,36 +1,55 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+
 public class Main {
     public static void main(String[] args) {
+        System.out.println("=== Social Media Post Manager ===");
 
-        System.out.println("Bank Name: " + BankAccount.bankName);
-        System.out.println("Interest Rate: 3.0%");
-        System.out.println(" ");
-        int accounts = 0;
 
-        BankAccount account1 = new BankAccount("John Doe", 1000.00);
-        accounts++;
-        BankAccount account2 = new BankAccount("Jane Smith", 2500.00);
-        accounts++;
-        BankAccount account3 = new BankAccount("Bob Johnson", 500.00);
-        accounts++;
+        PostManager manager = new PostManager();
 
-        System.out.println("Account created: ACC001 for " + account1.accountHolderName + " with initial balance of " + account1.balance);
-        System.out.println("Account created: ACC002 for " + account2.accountHolderName + " with initial balance of " + account2.balance);
-        System.out.println("Account created: ACC003 for " + account3.accountHolderName + " with initial balance of " + account3.balance);
-        System.out.println(" ");
 
-        System.out.println("=== Account Operations ===");
-        account1.deposit(500.00);
-        System.out.println("John Doe deposited: " + 500.00 + ". New balance: " + account1.balance );
-        account2.withdraw(300.00);
-        System.out.println("Jane Smith withdrew: " + 300.00 + ". New balance: " + account2.balance );
-        System.out.println(" ");
+        String postTitle = "Java Programming Tips";
+        int likes = 150;
+        int comments = 75;
+        int shares = 25;
 
-        System.out.println("=== Interest Calculations ===");
-        System.out.println(account1.accountHolderName + " interest: " + (1545.00 - 1500.00));
-        System.out.println(account2.accountHolderName + " interest: " + (2266.00 - 2200.00));
-        System.out.println(account3.accountHolderName + " interest: " + (515.00 - 500.00));
-        System.out.println(" ");
 
-        System.out.println("Total Accounts Created: " + accounts);
+        int engagementScore = manager.calculateEngagement(likes, comments, shares);
+
+
+        String category = manager.getCategoryRating(engagementScore);
+
+
+        System.out.println("Post: " + postTitle);
+        System.out.println("Engagement Score: " + engagementScore);
+        System.out.println("Category: " + category);
+        System.out.println();
+
+
+        String[] hashtagsArray = {"#java", "#coding", "#programming", "#java", "#tips"};
+        ArrayList<String> uniqueHashtags = manager.manageHashtags(hashtagsArray);
+
+        System.out.println("Unique Hashtags: " + uniqueHashtags);
+
+
+        ArrayList<String> posts = new ArrayList<>();
+        posts.add("Advanced Java Tutorial");
+        posts.add("Spring Boot Guide");
+        posts.add("Basic Programming");
+
+        HashMap<String, Integer> postEngagement = new HashMap<>();
+        postEngagement.put("Advanced Java Tutorial", 750);
+        postEngagement.put("Spring Boot Guide", 600);
+        postEngagement.put("Basic Programming", 300);
+
+        LinkedList<String> trendingPosts = manager.findTrendingPosts(posts, postEngagement);
+        System.out.println("Trending Posts: " + trendingPosts);
+
+
+        HashSet<String> uniqueAuthors = manager.getUniqueAuthors("Alice", "Bob", "Alice", "Charlie", "Bob");
+        System.out.println("Unique Authors: " + uniqueAuthors);
     }
 }
