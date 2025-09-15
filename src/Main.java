@@ -1,66 +1,29 @@
-import java.util.Scanner;
+
 
 public class Main {
-    public static void main(String[]args){
-        Scanner ygotScanner = new Scanner(System.in);
+    public static void main(String[] args) {
 
-        System.out.print("Enter ID number: ");
-        String ID = ygotScanner.nextLine();
+        System.out.println("\n=== EMPLOYEE MANAGEMENT SYSTEM ===");
+        System.out.println("\n");
 
-        System.out.print("Enter First name: ");
-        String fname = ygotScanner.nextLine();
-
-        System.out.print("Enter Last name: ");
-        String lname = ygotScanner.nextLine();
-
-        System.out.print("Enter course: ");
-        String course = ygotScanner.nextLine();
-
-        System.out.print("Enter section: ");
-        String section = ygotScanner.nextLine();
-
-        System.out.println("Hello, good day to you, " + fname + " " + lname +
-                ", from " + course + " " + section + ".");
-        System.out.println(" ");
+        Manager manager = new Manager("Alice Smith", 2001, 80000, "Engineering", 15000, 8);
+        Developer developer = new Developer("Bob Johnson", 2002, 70000, "Engineering", "Java", 5);
+        Intern intern = new Intern("Charlie Brown", 2003, 30000, "Engineering", "Tech University", true);
 
 
-        System.out.print("Please enter your Midterm Exam Score: ");
-        int mES = ygotScanner.nextInt();
+        System.out.println("\n--- Employee Details ---");
+        manager.displayInfo();
+        manager.work();
+        System.out.println("Monthly Salary: $" + manager.calculateSalary());
 
-        System.out.print("Please enter your Final Exam Score: ");
-        int fES = ygotScanner.nextInt();
+        System.out.println("\n--- Employee Details ---");
+        developer.displayInfo();
+        developer.work();
+        System.out.println("Monthly Salary: $" + developer.calculateSalary());
 
-        System.out.print("Please enter your Project Score: ");
-        int pS = ygotScanner.nextInt();
-
-        System.out.print("Please enter your Attendance Score: ");
-        int aS = ygotScanner.nextInt();
-
-        int overAllScore = mES + fES + pS + aS;
-        System.out.println("Your overall score is: " + overAllScore);
-
-
-
-        int averageScore = mES + fES + pS + aS % 400;
-        int result;
-        if (averageScore >= 75) {
-            result = 2;
-        }
-        else{
-            result = 1;
-        }
-
-        switch(result){
-            case 2:
-                System.out.println("Passed");
-                break;
-            case 1:
-                System.out.println("Failed");
-                break;
-        }
-
-        System.out.println("end");
-
-
+        System.out.println("\n--- Employee Details ---");
+        intern.displayInfo();
+        intern.work();
+        System.out.println("Monthly Salary: $" + intern.calculateSalary());
     }
 }
