@@ -1,66 +1,39 @@
-import java.util.Scanner;
-
 public class Main {
-    public static void main(String[]args){
-        Scanner ygotScanner = new Scanner(System.in);
+    public static void main(String[] args) {
+        System.out.println("\n=== Library Management System ===");
 
-        System.out.print("Enter ID number: ");
-        String ID = ygotScanner.nextLine();
+        Book book1 = new Book("Java Programming", "John Smith", "1234567890", 2020);
+        Book book2 = new Book("Data Structures", "Jane Doe", "9876543210", 2019);
+        Book book3 = new Book("Web Development", "Mike Johnson", "5555666677", 2021);
 
-        System.out.print("Enter First name: ");
-        String fname = ygotScanner.nextLine();
-
-        System.out.print("Enter Last name: ");
-        String lname = ygotScanner.nextLine();
-
-        System.out.print("Enter course: ");
-        String course = ygotScanner.nextLine();
-
-        System.out.print("Enter section: ");
-        String section = ygotScanner.nextLine();
-
-        System.out.println("Hello, good day to you, " + fname + " " + lname +
-                ", from " + course + " " + section + ".");
-        System.out.println(" ");
+        System.out.println("\nAdding books to library...");
+        Library library = new Library();
+        library.addBook(book1);
+        library.addBook(book2);
+        library.addBook(book3);
 
 
-        System.out.print("Please enter your Midterm Exam Score: ");
-        int mES = ygotScanner.nextInt();
+        library.displayAllBooks();
 
-        System.out.print("Please enter your Final Exam Score: ");
-        int fES = ygotScanner.nextInt();
+        library.borrowBook("1234567890");
+        library.borrowBook("1234567890");
 
-        System.out.print("Please enter your Project Score: ");
-        int pS = ygotScanner.nextInt();
+        library.displayAvailableBooks();
 
-        System.out.print("Please enter your Attendance Score: ");
-        int aS = ygotScanner.nextInt();
-
-        int overAllScore = mES + fES + pS + aS;
-        System.out.println("Your overall score is: " + overAllScore);
+        library.returnBook("1234567890");
 
 
-
-        int averageScore = mES + fES + pS + aS % 400;
-        int result;
-        if (averageScore >= 75) {
-            result = 2;
+        System.out.println("\nTesting validation...");
+        try {
+            Book invalidBook = new Book("Invalid Book", "Test Author", "123", 2030);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
-        else{
-            result = 1;
+        try {
+            Book invalidBook = new Book("Invalid Book", "Test Author", "1230102101", 2030);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
-
-        switch(result){
-            case 2:
-                System.out.println("Passed");
-                break;
-            case 1:
-                System.out.println("Failed");
-                break;
-        }
-
-        System.out.println("end");
-
 
     }
 }
