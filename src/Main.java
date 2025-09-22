@@ -1,66 +1,32 @@
-import java.util.Scanner;
-
 public class Main {
-    public static void main(String[]args){
-        Scanner ygotScanner = new Scanner(System.in);
+    public static void main(String[] args) {
+        PetService service = new PetService();
 
-        System.out.print("Enter ID number: ");
-        String ID = ygotScanner.nextLine();
+        System.out.println("Basic checkup: $" + service.calculateFee());
+        System.out.println("Checkup with vaccination: $" + service.calculateFee(true));
+        System.out.println("Full service: $" + service.calculateFee(true, true));
+        System.out.println("Emergency: $" + service.calculateFee("accident"));
 
-        System.out.print("Enter First name: ");
-        String fname = ygotScanner.nextLine();
+        System.out.println("\nWelcome to the Pet Clinic!");
+        System.out.println("==========================");
 
-        System.out.print("Enter Last name: ");
-        String lname = ygotScanner.nextLine();
+        Pet dog = new Dog("Buddy", 3);
+        Pet cat = new Cat("Whiskers", 2);
+        Pet bird = new Bird("Tweety", 1);
 
-        System.out.print("Enter course: ");
-        String course = ygotScanner.nextLine();
+        dog.displayInfo();
+        dog.makeSound();
 
-        System.out.print("Enter section: ");
-        String section = ygotScanner.nextLine();
+        cat.displayInfo();
+        cat.makeSound();
 
-        System.out.println("Hello, good day to you, " + fname + " " + lname +
-                ", from " + course + " " + section + ".");
-        System.out.println(" ");
+        bird.displayInfo();
+        bird.makeSound();
 
+        System.out.println("\nTraining Session Started!");
+        System.out.println("==========================");
 
-        System.out.print("Please enter your Midterm Exam Score: ");
-        int mES = ygotScanner.nextInt();
-
-        System.out.print("Please enter your Final Exam Score: ");
-        int fES = ygotScanner.nextInt();
-
-        System.out.print("Please enter your Project Score: ");
-        int pS = ygotScanner.nextInt();
-
-        System.out.print("Please enter your Attendance Score: ");
-        int aS = ygotScanner.nextInt();
-
-        int overAllScore = mES + fES + pS + aS;
-        System.out.println("Your overall score is: " + overAllScore);
-
-
-
-        int averageScore = mES + fES + pS + aS % 400;
-        int result;
-        if (averageScore >= 75) {
-            result = 2;
-        }
-        else{
-            result = 1;
-        }
-
-        switch(result){
-            case 2:
-                System.out.println("Passed");
-                break;
-            case 1:
-                System.out.println("Failed");
-                break;
-        }
-
-        System.out.println("end");
-
-
+        ((Trainable) dog).performTrick();
+        ((Trainable) bird).performTrick();
     }
 }
