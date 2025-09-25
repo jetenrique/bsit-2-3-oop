@@ -1,66 +1,90 @@
-import java.util.Scanner;
+abstract class Media {
+    protected String title;
+    protected String itemId;
+    protected boolean isAvailable;
 
-public class Main {
-    public static void main(String[]args){
-        Scanner ygotScanner = new Scanner(System.in);
+    public Media(String title, String itemId) {
+        this.title = title;
+        this.itemId = itemId;
+        this.isAvailable = true;
+    }
 
-        System.out.print("Enter ID number: ");
-        String ID = ygotScanner.nextLine();
+    public String getTitle() {
+        return title;
+    }
 
-        System.out.print("Enter First name: ");
-        String fname = ygotScanner.nextLine();
+    public String getItemId() {
+        return itemId;
+    }
 
-        System.out.print("Enter Last name: ");
-        String lname = ygotScanner.nextLine();
+    public boolean isAvailable() {
+        return isAvailable;
+    }
 
-        System.out.print("Enter course: ");
-        String course = ygotScanner.nextLine();
+    public void borrowItem() {
+        isAvailable = false;
+        System.out.println(title + " has been borrowed");
+    }
 
-        System.out.print("Enter section: ");
-        String section = ygotScanner.nextLine();
+    public void returnItem() {
+        isAvailable = true;
+        System.out.println(title + " has been returned");
+    }
 
-        System.out.println("Hello, good day to you, " + fname + " " + lname +
-                ", from " + course + " " + section + ".");
-        System.out.println(" ");
-
-
-        System.out.print("Please enter your Midterm Exam Score: ");
-        int mES = ygotScanner.nextInt();
-
-        System.out.print("Please enter your Final Exam Score: ");
-        int fES = ygotScanner.nextInt();
-
-        System.out.print("Please enter your Project Score: ");
-        int pS = ygotScanner.nextInt();
-
-        System.out.print("Please enter your Attendance Score: ");
-        int aS = ygotScanner.nextInt();
-
-        int overAllScore = mES + fES + pS + aS;
-        System.out.println("Your overall score is: " + overAllScore);
+    public abstract String getMediaType();
+    public abstract void displayInfo();
+}
 
 
+class Book extends Media {
+    private String author;
 
-        int averageScore = mES + fES + pS + aS % 400;
-        int result;
-        if (averageScore >= 75) {
-            result = 2;
-        }
-        else{
-            result = 1;
-        }
+    public Book(String title, String itemId, String author) {
+        super(title, itemId);
+        this.author = author;
+    }
 
-        switch(result){
-            case 2:
-                System.out.println("Passed");
-                break;
-            case 1:
-                System.out.println("Failed");
-                break;
-        }
+    public String getMediaType() {
+        return "Book";
+    }
 
-        System.out.println("end");
+    public void displayInfo() {
+        System.out.println("Book: \"" + title + "\" by " + author + " (ID: " + itemId + ")");
+    }
+}
 
 
+class DVD extends Media {
+    private String director;
+
+    public DVD(String title, String itemId, String director) {
+        super(title, itemId);
+        this.director = director;
+    }
+
+    public String getMediaType() {
+        return "DVD";
+    }
+
+    public void displayInfo() {
+        System.out.println("DVD: \"" + title + "\" directed by " + director + " (ID: " + itemId + ")");
+    }
+}
+
+
+class Magazine extends Media {
+    private int issueNumber;
+
+    public Magazine(String title, String itemId, int issueNumber) {
+        super(title, itemId);
+        this.issueNumber = issueNumber;
+    }
+
+    public String getMediaType() {
+        return "Magazine";
+    }
+
+    public void displayInfo() {
+        System.out.println("Magazine: \"" + title + "\" Issue #" + issueNumber + " (ID: " + itemId + ")");
     }
 }
