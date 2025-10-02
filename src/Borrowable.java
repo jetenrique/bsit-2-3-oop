@@ -1,10 +1,9 @@
 public interface Borrowable {
-    void borrowItem(String borrowerName);
+    boolean isBorrowed();
+    void borrow();
     void returnItem();
-    boolean isAvailable();
-    int getBorrowingPeriod(); // in days
 
     default String getBorrowingStatus() {
-        return isAvailable() ? "Available for borrowing" : "Currently borrowed";
+        return isBorrowed() ? "Currently borrowed" : "Available for borrowing";
     }
 }
