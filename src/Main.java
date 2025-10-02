@@ -1,45 +1,42 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("═══ LIBRARY MANAGEMENT SYSTEM TEST ═══");
+        System.out.println("═══ LIBRARY MANAGEMENT SYSTEM TEST ═══\n");
 
-        System.out.println("\n══ Adding Items to Library ══");
-        Book book = new Book("B1", "Java Programming", "James GosLing", "12345", 500, "Programming");
-        Magazine mag = new Magazine("M1", "Tech Today", "Editor Smith", 101, "October", true);
-        DVD dvd = new DVD("D1", "The Matrix", "Wachowski Sisters", 120, "R", "Sci-Fi");
+        System.out.println("══ Adding Items to Library ══");
+        Book book = new Book("Java Programming", "James GosLing");
+        Magazine magazine = new Magazine("Tech Today", "Editor Smith");
+        DVD dvd = new DVD("The Matrix", "Wachowski Sisters");
 
-        System.out.println("Added: Book - " + book.getItemInfo());
-        System.out.println("Added: Magazine - " + mag.getItemInfo());
-        System.out.println("Added: DVD - " + dvd.getItemInfo());
-
-        LibraryManager manager = new LibraryManager();
-        manager.addItem(book);
-        manager.addItem(mag);
-        manager.addItem(dvd);
+        System.out.println("Added: Book - " + book.getTitle() + " by " + book.getCreator());
+        System.out.println("Added: Magazine - " + magazine.getTitle() + " by " + magazine.getCreator());
+        System.out.println("Added: DVD - " + dvd.getTitle() + " by " + dvd.getCreator());
 
         System.out.println("\n══ Displaying All Items ══");
-        manager.displayAllItems();
+        System.out.println(book.getBorrowingStatus());
+        System.out.println(magazine.getBorrowingStatus());
+        System.out.println(dvd.getBorrowingStatus());
 
         System.out.println("\n══ Testing Borrowing ══");
-        Student student = new Student("S1", "John Smith", "john@email.com", "ST123", "Computer Science");
-        Faculty faculty = new Faculty("F1", "Dr. Smith", "smith@email.com", "Engineering", "Professor");
+        Student student = new Student("John Smith", "Computer Science");
+        Faculty faculty = new Faculty("Dr. Smith", "Engineering");
 
-        book.borrowItem(student.getName());
-        student.addBorrowedItem(book);
-        dvd.borrowItem(faculty.getName());
-        faculty.addBorrowedItem(dvd);
+        student.borrowItem(book);
+        faculty.borrowItem(dvd);
 
-        System.out.println("Student " + student.getName() + " borrowed: " + book.title);
-        System.out.println("Faculty " + faculty.getName() + " borrowed: " + dvd.title);
+        System.out.println("Student John borrowed: " + book.getTitle());
+        System.out.println("Faculty Dr. Smith borrowed: " + dvd.getTitle());
 
         System.out.println("\n══ Displaying Available Items ══");
-        manager.displayAvailableItems();
+        if (!magazine.isBorrowed()) {
+            System.out.println("Magazine: " + magazine.getTitle() + " (Available for borrowing)");
+        }
 
         System.out.println("\n══ Testing Late Fees ══");
-        System.out.println("Java Programming - 5 days late: $" + book.calculateLateFee(5));
-        System.out.println("The Matrix - 3 days late: $" + dvd.calculateLateFee(3));
+        System.out.println(book.getTitle() + " - 5 days late: $" + LibraryManager.calculateLateFee(5, 0.50));
+        System.out.println(dvd.getTitle() + " - 3 days late: $" + LibraryManager.calculateLateFee(3, 1.00));
 
         System.out.println("\n══ Testing User Information ══");
-        System.out.println("Student: " + student.getName() + " (" + student.getMajor() + ") - " + student.getBorrowedItemsCount() + " items borrowed");
-        System.out.println("Faculty: " + faculty.getName() + " (" + faculty.getDepartment() + ") - " + faculty.getBorrowedItemsCount() + " items borrowed");
+        System.out.println("Student: " + student.getName() + " (" + student.getDepartment() + ") - " + student.getBorrowedCount() + " items borrowed");
+        System.out.println("Faculty: " + faculty.getName() + " (" + faculty.getDepartment() + ") - " + faculty.getBorrowedCount() + " items borrowed");
     }
 }
